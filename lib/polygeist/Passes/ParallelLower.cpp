@@ -287,7 +287,7 @@ void ParallelLower::runOnOperation() {
       asyncOp = builder.create<mlir::async::ExecuteOp>(
           loc, /*results*/ TypeRange(), /*dependencies*/ dependencies,
           /*operands*/ ValueRange());
-      Block *blockB = &asyncOp.body().front();
+      Block *blockB = asyncOp.getBody();
       builder.setInsertionPointToStart(blockB);
     }
 
